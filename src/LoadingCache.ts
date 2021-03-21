@@ -16,23 +16,12 @@ export enum RemovalCause {
 export class LoadingCache<K, V> {
   protected cache = new Map<K, V>();
   protected options: LoadingCacheOptions<K, V>;
-  protected afterAccessExpirationTimers = new Map<
-    K,
-    ReturnType<typeof setTimeout>
-  >();
-  protected afterWriteExpirationTimers = new Map<
-    K,
-    ReturnType<typeof setTimeout>
-  >();
-  protected refreshAfterWriteTimers = new Map<
-    K,
-    ReturnType<typeof setInterval>
-  >();
+  protected afterAccessExpirationTimers = new Map<K, ReturnType<typeof setTimeout>>();
+  protected afterWriteExpirationTimers = new Map<K, ReturnType<typeof setTimeout>>();
+  protected refreshAfterWriteTimers = new Map<K, ReturnType<typeof setInterval>>();
 
   constructor(
-    optionsOrLoader:
-      | LoadingCacheOptions<K, V>
-      | LoadingCacheOptions<K, V>['loader']
+    optionsOrLoader: LoadingCacheOptions<K, V> | LoadingCacheOptions<K, V>['loader']
   ) {
     this.options =
       typeof optionsOrLoader === 'function'

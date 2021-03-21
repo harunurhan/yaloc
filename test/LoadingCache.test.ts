@@ -83,10 +83,7 @@ describe('LoadingCache', () => {
     cache.set('foo', 'bar');
     cache.delete('foo');
     expect(onRemove).toHaveBeenCalledTimes(1);
-    expect(onRemove).toHaveBeenCalledWith(
-      ['foo', 'bar'],
-      RemovalCause.EXPLICIT_DELETE
-    );
+    expect(onRemove).toHaveBeenCalledWith(['foo', 'bar'], RemovalCause.EXPLICIT_DELETE);
   });
 
   it('calls onRemove when an entry is value is replaced', () => {
@@ -98,10 +95,7 @@ describe('LoadingCache', () => {
     cache.set('foo', 'bar');
     cache.set('foo', 'replaced bar');
     expect(onRemove).toHaveBeenCalledTimes(1);
-    expect(onRemove).toHaveBeenCalledWith(
-      ['foo', 'bar'],
-      RemovalCause.REPLACED
-    );
+    expect(onRemove).toHaveBeenCalledWith(['foo', 'bar'], RemovalCause.REPLACED);
   });
 
   it('calls onRemove when an entry is expired', () => {
