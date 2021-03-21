@@ -1,4 +1,15 @@
 {
+  "name": "yaloc",
+  "author": "Harun Urhan - @harunurhan",
+  "description": "A loading cache data structure for web and node.",
+  "keywords": [
+    "loading cache",
+    "guava",
+    "cache",
+    "async",
+    "expiration",
+    "refresh"
+  ],
   "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -32,8 +43,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "yaloc",
-  "author": "Harun Urhan - @harunurhan",
   "module": "dist/yaloc.esm.js",
   "size-limit": [
     {
