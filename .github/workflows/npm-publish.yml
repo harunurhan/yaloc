@@ -22,9 +22,9 @@ jobs:
         restore-keys: |
           nodeModules-
     - name: Install dependencies
-        run: yarn install --frozen-lockfile
-        env:
-          CI: true
+      run: yarn install --frozen-lockfile
+      env:
+        CI: true
     - name: Publish if version has been updated
       uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
       with:
