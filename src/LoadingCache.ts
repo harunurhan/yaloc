@@ -2,7 +2,7 @@ export interface LoadingCacheOptions<K, V> {
   expireAfterWrite?: number;
   expireAfterAccess?: number;
   refreshAfterWrite?: number;
-  onRemove?: (entry: [K, V], cause: RemovalCause) => void
+  onRemove?: (entry: [K, V], cause: RemovalCause) => void;
 
   loader: (key: K) => V | Promise<V>;
 }
@@ -16,13 +16,28 @@ export enum RemovalCause {
 export class LoadingCache<K, V> {
   protected cache = new Map<K, V>();
   protected options: LoadingCacheOptions<K, V>;
-  protected afterAccessExpirationTimers = new Map<K, ReturnType<typeof setTimeout>>();
-  protected afterWriteExpirationTimers = new Map<K, ReturnType<typeof setTimeout>>();
-  protected refreshAfterWriteTimers = new Map<K, ReturnType<typeof setInterval>>();
+  protected afterAccessExpirationTimers = new Map<
+    K,
+    ReturnType<typeof setTimeout>
+  >();
+  protected afterWriteExpirationTimers = new Map<
+    K,
+    ReturnType<typeof setTimeout>
+  >();
+  protected refreshAfterWriteTimers = new Map<
+    K,
+    ReturnType<typeof setInterval>
+  >();
 
-
-  constructor(optionsOrLoader: LoadingCacheOptions<K, V> | LoadingCacheOptions<K, V>["loader"]) {
-    this.options = typeof optionsOrLoader === 'function' ? { loader: optionsOrLoader } : optionsOrLoader;
+  constructor(
+    optionsOrLoader:
+      | LoadingCacheOptions<K, V>
+      | LoadingCacheOptions<K, V>['loader']
+  ) {
+    this.options =
+      typeof optionsOrLoader === 'function'
+        ? { loader: optionsOrLoader }
+        : optionsOrLoader;
   }
 
   public async get(key: K): Promise<V> {
@@ -60,7 +75,7 @@ export class LoadingCache<K, V> {
     return this.cache.has(key);
   }
 
-  // does not run `onRemove` listener 
+  // does not run `onRemove` listener
   public clear(): void {
     this.cache.clear();
   }
@@ -156,7 +171,6 @@ export class LoadingCache<K, V> {
       this.refreshAfterWriteTimers.set(key, timer);
     }
   }
-
 
   protected clearTimers(key: K): void {
     const afterAccessTimer = this.afterAccessExpirationTimers.get(key);
