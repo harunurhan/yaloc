@@ -10,7 +10,7 @@
     "expiration",
     "refresh"
   ],
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -27,7 +27,6 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "prepublish": "yarn build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
